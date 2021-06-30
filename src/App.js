@@ -1,3 +1,4 @@
+import "./App.css";
 import { Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -6,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Login from "./components/Login";
 import { AuthProvider } from "./context/AuthContext";
 import ChatWindow from "./components/ChatWindow";
+import "./css/chatbubble.css";
 
 function App() {
 	return (

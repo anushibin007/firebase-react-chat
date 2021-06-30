@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import firebase from "firebase";
 import "firebase/firestore";
 import { useCollectionData } from "react-firebase-hooks/firestore";
+import ChatMessage from "./ChatMessage";
 
 const ChatWindow = () => {
 	const [authState] = useContext(AuthContext);
@@ -27,10 +28,12 @@ const ChatWindow = () => {
 		if (authState.user) {
 			return (
 				<React.Fragment>
-					{messages &&
-						messages.map((aMessage) => {
-							return <Row key={aMessage.id}>{aMessage.text}</Row>;
-						})}
+					<div className="imessage">
+						{messages &&
+							messages.map((aMessage) => {
+								return <ChatMessage key={aMessage.id} message={aMessage} />;
+							})}
+					</div>
 				</React.Fragment>
 			);
 		}
@@ -40,13 +43,14 @@ const ChatWindow = () => {
 		setMessage(e.target.value);
 	};
 
-	const sendMessage = () => {
-		toast(message);
+	const sendMessage = (e) => {
+		e.preventDefault();
 		setMessage("");
 		roomDb.add({
 			text: message,
 			uid: authState.user.uid,
 			photoUrl: authState.user.photoURL,
+			displayName: authState.user.displayName,
 			createdAt: firebase.firestore.FieldValue.serverTimestamp(),
 		});
 	};
@@ -55,10 +59,12 @@ const ChatWindow = () => {
 		if (authState.user) {
 			return (
 				<React.Fragment>
-					<Row>
-						<FormControl as="textarea" value={message} onChange={handleMessageChanged} />
-						<Button onClick={sendMessage}>🚀&nbsp;Send</Button>
-					</Row>
+					<form onSubmit={sendMessage}>
+						<Row>
+							<FormControl value={message} onChange={handleMessageChanged} />
+							<Button type="submit">🚀&nbsp;Send</Button>
+						</Row>
+					</form>
 				</React.Fragment>
 			);
 		}
