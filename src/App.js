@@ -5,12 +5,14 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Login from "./components/Login";
 import { AuthProvider } from "./context/AuthContext";
+import ChatWindow from "./components/ChatWindow";
 
 function App() {
 	return (
 		<Container>
 			<AuthProvider>
 				<Login />
+				<ChatWindow />
 				<ToastContainer position="bottom-right" />
 			</AuthProvider>
 		</Container>
