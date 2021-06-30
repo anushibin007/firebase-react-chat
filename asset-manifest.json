@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/firebase-react-chat/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/firebase-react-chat/static/js/main.e8c5ccff.chunk.js",
-    "main.js.map": "/firebase-react-chat/static/js/main.e8c5ccff.chunk.js.map",
-    "runtime-main.js": "/firebase-react-chat/static/js/runtime-main.e392d888.js",
-    "runtime-main.js.map": "/firebase-react-chat/static/js/runtime-main.e392d888.js.map",
+    "main.css": "/firebase-react-chat/static/css/main.989229fa.chunk.css",
+    "main.js": "/firebase-react-chat/static/js/main.d05f1216.chunk.js",
+    "main.js.map": "/firebase-react-chat/static/js/main.d05f1216.chunk.js.map",
+    "runtime-main.js": "/firebase-react-chat/static/js/runtime-main.fca7d2c3.js",
+    "runtime-main.js.map": "/firebase-react-chat/static/js/runtime-main.fca7d2c3.js.map",
     "static/css/2.b9a2ea33.chunk.css": "/firebase-react-chat/static/css/2.b9a2ea33.chunk.css",
-    "static/js/2.ee21f03e.chunk.js": "/firebase-react-chat/static/js/2.ee21f03e.chunk.js",
-    "static/js/2.ee21f03e.chunk.js.map": "/firebase-react-chat/static/js/2.ee21f03e.chunk.js.map",
-    "static/js/3.5f52a952.chunk.js": "/firebase-react-chat/static/js/3.5f52a952.chunk.js",
-    "static/js/3.5f52a952.chunk.js.map": "/firebase-react-chat/static/js/3.5f52a952.chunk.js.map",
+    "static/js/2.69ef2a17.chunk.js": "/firebase-react-chat/static/js/2.69ef2a17.chunk.js",
+    "static/js/2.69ef2a17.chunk.js.map": "/firebase-react-chat/static/js/2.69ef2a17.chunk.js.map",
+    "static/js/3.10759eb4.chunk.js": "/firebase-react-chat/static/js/3.10759eb4.chunk.js",
+    "static/js/3.10759eb4.chunk.js.map": "/firebase-react-chat/static/js/3.10759eb4.chunk.js.map",
     "index.html": "/firebase-react-chat/index.html",
     "static/css/2.b9a2ea33.chunk.css.map": "/firebase-react-chat/static/css/2.b9a2ea33.chunk.css.map",
-    "static/css/main.6dea0f05.chunk.css.map": "/firebase-react-chat/static/css/main.6dea0f05.chunk.css.map",
-    "static/js/2.ee21f03e.chunk.js.LICENSE.txt": "/firebase-react-chat/static/js/2.ee21f03e.chunk.js.LICENSE.txt",
+    "static/css/main.989229fa.chunk.css.map": "/firebase-react-chat/static/css/main.989229fa.chunk.css.map",
+    "static/js/2.69ef2a17.chunk.js.LICENSE.txt": "/firebase-react-chat/static/js/2.69ef2a17.chunk.js.LICENSE.txt",
     "static/media/bootstrap-icons.css": "/firebase-react-chat/static/media/bootstrap-icons.dfd0ea12.woff2"
   },
   "entrypoints": [
-    "static/js/runtime-main.e392d888.js",
+    "static/js/runtime-main.fca7d2c3.js",
     "static/css/2.b9a2ea33.chunk.css",
-    "static/js/2.ee21f03e.chunk.js",
-    "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.e8c5ccff.chunk.js"
+    "static/js/2.69ef2a17.chunk.js",
+    "static/css/main.989229fa.chunk.css",
+    "static/js/main.d05f1216.chunk.js"
   ]
 }
