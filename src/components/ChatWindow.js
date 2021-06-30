@@ -2,7 +2,6 @@ import { Button, FormControl } from "react-bootstrap";
 import React, { useContext, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { AuthContext } from "../context/AuthContext";
-import { toast } from "react-toastify";
 import firebase from "firebase";
 import "firebase/firestore";
 import { useCollectionData } from "react-firebase-hooks/firestore";
