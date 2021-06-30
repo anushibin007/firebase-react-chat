@@ -46,6 +46,7 @@ const ChatWindow = () => {
 		roomDb.add({
 			text: message,
 			uid: authState.user.uid,
+			photoUrl: authState.user.photoURL,
 			createdAt: firebase.firestore.FieldValue.serverTimestamp(),
 		});
 	};
