@@ -9,7 +9,7 @@ const ChatMessage = (props) => {
 	const image = <Image roundedCircle className="avatar" src={message.photoUrl} alt={`Profile picture of ${message.displayName}`} title={message.displayName} />;
 	return (
 		<React.Fragment>
-			<p className={from}>
+			<p className={`${from} animate__bounceIn animate__animated`}>
 				{from === "from-them" ? image : ""}&nbsp;
 				{message.text}&nbsp;
 				{from === "from-me" ? image : ""}

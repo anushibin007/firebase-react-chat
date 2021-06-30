@@ -8,6 +8,7 @@ import Login from "./components/Login";
 import { AuthProvider } from "./context/AuthContext";
 import ChatWindow from "./components/ChatWindow";
 import "./css/chatbubble.css";
+import "animate.css/animate.min.css";
 
 function App() {
 	return (
