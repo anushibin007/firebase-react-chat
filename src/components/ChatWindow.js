@@ -61,7 +61,7 @@ const ChatWindow = () => {
 				<React.Fragment>
 					<form onSubmit={sendMessage}>
 						<Row>
-							<FormControl value={message} onChange={handleMessageChanged} />
+							<FormControl value={message} onChange={handleMessageChanged} placeholder="🖊 Enter your message here" />
 							<Button type="submit">🚀&nbsp;Send</Button>
 						</Row>
 					</form>
