@@ -7,12 +7,25 @@ const ChatMessage = (props) => {
 	const message = props.message;
 	const from = message.uid === (authState.user ? authState.user.uid : "") ? "from-me" : "from-them";
 	const image = <Image roundedCircle className="avatar" src={message.photoUrl} alt={`Profile picture of ${message.displayName}`} title={message.displayName} />;
+
+	const returnMessageItemBasedOnType = () => {
+		if (message.messageType && message.messageType === "image") {
+			return (
+				<a href={message.text} target="_blank" rel="noopener noreferrer">
+					<img className="image-message" src={message.text} alt={message.text} />
+				</a>
+			);
+		} else {
+			return message.text;
+		}
+	};
+
 	return (
 		<React.Fragment>
 			{message && (
 				<p className={`${from} animate__bounceIn animate__animated`} title={message.createdAt && message.createdAt.toDate()}>
 					{from === "from-them" ? image : ""}&nbsp;
-					{message.text}&nbsp;
+					{returnMessageItemBasedOnType()}&nbsp;
 					{from === "from-me" ? image : ""}
 				</p>
 			)}

@@ -6,6 +6,7 @@ import "firebase/firestore";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import ChatMessage from "./ChatMessage";
 import { toast } from "react-toastify";
+import FileUploader from "react-firebase-file-uploader";
 
 const ChatWindow = () => {
 	const [authState] = useContext(AuthContext);
@@ -51,6 +52,7 @@ const ChatWindow = () => {
 					uid: authState.user.uid,
 					photoUrl: authState.user.photoURL,
 					displayName: authState.user.displayName,
+					messageType: "text",
 					createdAt: firebase.firestore.FieldValue.serverTimestamp(),
 				})
 				.catch((err) => {
@@ -85,6 +87,52 @@ const ChatWindow = () => {
 			);
 	};
 
+	const invokeFileUpload = (e) => {
+		e.preventDefault();
+		document.getElementById("fileUpload").click();
+	};
+
+	const fileAttachment = () => {
+		if (authState.user) {
+			return (
+				<div>
+					<form className="wrapper">
+						<FileUploader hidden accept="image/*" id="fileUpload" randomizeFilename storageRef={firebase.storage().ref("images")} onUploadError={handleUploadError} onUploadSuccess={handleUploadSuccess} />
+						<Button type="submit" variant="primary" onClick={invokeFileUpload}>
+							📸&nbsp;Upload an image
+						</Button>
+					</form>
+				</div>
+			);
+		}
+	};
+
+	const handleUploadError = (error) => {
+		toast.error(error);
+	};
+
+	const handleUploadSuccess = (filename) => {
+		firebase
+			.storage()
+			.ref("images")
+			.child(filename)
+			.getDownloadURL()
+			.then((url) => {
+				roomDb
+					.add({
+						text: url,
+						uid: authState.user.uid,
+						photoUrl: authState.user.photoURL,
+						displayName: authState.user.displayName,
+						messageType: "image",
+						createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+					})
+					.catch((err) => {
+						toast.error("💔 Oops. Error: " + err);
+					});
+			});
+	};
+
 	useEffect(() => {
 		const endOfPage = document.getElementById("endOfPage");
 		if (endOfPage) endOfPage.scrollIntoView();
@@ -94,6 +142,7 @@ const ChatWindow = () => {
 		<React.Fragment>
 			{messagesWindow()}
 			{chatInputWindow()}
+			{fileAttachment()}
 		</React.Fragment>
 	);
 };
