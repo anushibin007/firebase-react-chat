@@ -6,6 +6,7 @@ import firebase from "firebase";
 import "firebase/firestore";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import ChatMessage from "./ChatMessage";
+import { toast } from "react-toastify";
 
 const ChatWindow = () => {
 	const [authState] = useContext(AuthContext);
@@ -45,13 +46,21 @@ const ChatWindow = () => {
 	const sendMessage = (e) => {
 		e.preventDefault();
 		setMessage("");
-		roomDb.add({
-			text: message,
-			uid: authState.user.uid,
-			photoUrl: authState.user.photoURL,
-			displayName: authState.user.displayName,
-			createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-		});
+		if (message && message.trim()) {
+			roomDb
+				.add({
+					text: message,
+					uid: authState.user.uid,
+					photoUrl: authState.user.photoURL,
+					displayName: authState.user.displayName,
+					createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+				})
+				.catch((err) => {
+					toast.error("💔 Oops. Error: " + err);
+				});
+		} else {
+			toast.error("💔 Please enter some message");
+		}
 	};
 
 	const chatInputWindow = () => {
