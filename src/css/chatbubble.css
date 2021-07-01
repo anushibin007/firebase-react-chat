@@ -127,7 +127,8 @@ body {
 }
 
 .btn,
-.form-control {
+.form-control,
+.alert {
 	width: 100%;
 	max-width: 600px;
 }

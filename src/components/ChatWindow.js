@@ -1,4 +1,4 @@
-import { Button, FormControl } from "react-bootstrap";
+import { Button, FormControl, Alert } from "react-bootstrap";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import firebase from "firebase";
@@ -24,19 +24,17 @@ const ChatWindow = () => {
 	const [messages] = useCollectionData(query, { idField: "id" });
 
 	const messagesWindow = () => {
-		if (authState.user) {
-			return (
-				<React.Fragment>
-					<div className="imessage">
-						{messages &&
-							messages.map((aMessage) => {
-								return <ChatMessage key={aMessage.id} message={aMessage} />;
-							})}
-						<div id="endOfPage" />
-					</div>
-				</React.Fragment>
-			);
-		}
+		return (
+			<React.Fragment>
+				<div className="imessage">
+					{messages &&
+						messages.map((aMessage) => {
+							return <ChatMessage key={aMessage.id} message={aMessage} />;
+						})}
+					<div id="endOfPage" />
+				</div>
+			</React.Fragment>
+		);
 	};
 
 	const handleMessageChanged = (e) => {
@@ -79,13 +77,18 @@ const ChatWindow = () => {
 					</form>
 				</React.Fragment>
 			);
-		}
+		} else
+			return (
+				<div className="wrapper">
+					<Alert variant="danger">Please login to send a message</Alert>
+				</div>
+			);
 	};
 
 	useEffect(() => {
 		const endOfPage = document.getElementById("endOfPage");
 		if (endOfPage) endOfPage.scrollIntoView();
-	}, [messages]);
+	}, [messages, authState.user]);
 
 	return (
 		<React.Fragment>

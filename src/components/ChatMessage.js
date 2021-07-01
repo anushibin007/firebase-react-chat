@@ -5,7 +5,7 @@ import { Image } from "react-bootstrap";
 const ChatMessage = (props) => {
 	const [authState] = useContext(AuthContext);
 	const message = props.message;
-	const from = message.uid === authState.user.uid ? "from-me" : "from-them";
+	const from = message.uid === (authState.user ? authState.user.uid : "") ? "from-me" : "from-them";
 	const image = <Image roundedCircle className="avatar" src={message.photoUrl} alt={`Profile picture of ${message.displayName}`} title={message.displayName} />;
 	return (
 		<React.Fragment>
