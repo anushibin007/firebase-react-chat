@@ -9,11 +9,13 @@ const ChatMessage = (props) => {
 	const image = <Image roundedCircle className="avatar" src={message.photoUrl} alt={`Profile picture of ${message.displayName}`} title={message.displayName} />;
 	return (
 		<React.Fragment>
-			<p className={`${from} animate__bounceIn animate__animated`} title={message.createdAt.toDate()}>
-				{from === "from-them" ? image : ""}&nbsp;
-				{message.text}&nbsp;
-				{from === "from-me" ? image : ""}
-			</p>
+			{message && (
+				<p className={`${from} animate__bounceIn animate__animated`} title={message.createdAt && message.createdAt.toDate()}>
+					{from === "from-them" ? image : ""}&nbsp;
+					{message.text}&nbsp;
+					{from === "from-me" ? image : ""}
+				</p>
+			)}
 		</React.Fragment>
 	);
 };
