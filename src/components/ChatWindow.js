@@ -1,5 +1,5 @@
 import { Button, FormControl } from "react-bootstrap";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { AuthContext } from "../context/AuthContext";
 import firebase from "firebase";
@@ -78,10 +78,15 @@ const ChatWindow = () => {
 		}
 	};
 
+	useEffect(() => {
+		document.getElementById("endOfPage").scrollIntoView();
+	}, [messages]);
+
 	return (
 		<Col>
 			{messagesWindow()}
 			{chatInputWindow()}
+			<div id="endOfPage" />
 		</Col>
 	);
 };
