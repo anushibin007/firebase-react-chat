@@ -11,9 +11,13 @@ const ChatMessage = (props) => {
 	const returnMessageItemBasedOnType = () => {
 		if (message.messageType && message.messageType === "image") {
 			return (
-				<a href={message.text} target="_blank" rel="noopener noreferrer">
-					<img className="image-message" src={message.text} alt={`Image sent by ${message.displayName}`} />
-				</a>
+				<React.Fragment>
+					<a href={message.attachmentUrl} target="_blank" rel="noopener noreferrer">
+						<img className="image-message" src={message.attachmentUrl} alt={`Attachment sent by ${message.displayName}`} />
+					</a>
+					<br />
+					{message.text}
+				</React.Fragment>
 			);
 		} else {
 			return message.text;

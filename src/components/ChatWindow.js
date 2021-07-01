@@ -95,13 +95,11 @@ const ChatWindow = () => {
 	const renderFileUploadButton = () => {
 		if (authState.user) {
 			return (
-				<div>
-					<form className="wrapper">
-						<FileUploader hidden accept="image/*" id="fileUpload" randomizeFilename storageRef={firebase.storage().ref("images")} onUploadError={handleUploadError} onUploadSuccess={handleUploadSuccess} />
-						<Button type="submit" variant="primary" onClick={invokeFileUpload}>
-							📸&nbsp;Upload an image
-						</Button>
-					</form>
+				<div className="wrapper">
+					<FileUploader hidden accept="image/*" id="fileUpload" randomizeFilename storageRef={firebase.storage().ref("images")} onUploadError={handleUploadError} onUploadSuccess={handleUploadSuccess} />
+					<Button type="submit" variant="primary" onClick={invokeFileUpload}>
+						📸&nbsp;Upload an image
+					</Button>
 				</div>
 			);
 		}
@@ -120,12 +118,16 @@ const ChatWindow = () => {
 			.then((url) => {
 				roomDb
 					.add({
-						text: url,
+						text: message,
 						uid: authState.user.uid,
 						photoUrl: authState.user.photoURL,
 						displayName: authState.user.displayName,
 						messageType: "image",
+						attachmentUrl: url,
 						createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+					})
+					.then(() => {
+						setMessage("");
 					})
 					.catch((err) => {
 						toast.error("💔 Oops. Error: " + err);
