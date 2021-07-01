@@ -1,4 +1,4 @@
-import { Button, FormControl, Alert } from "react-bootstrap";
+import { Button, FormControl, Alert, ProgressBar } from "react-bootstrap";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import firebase from "firebase";
@@ -93,20 +93,23 @@ const ChatWindow = () => {
 	};
 
 	const renderFileUploadButton = () => {
-		if (authState.user) {
-			return (
-				<div className="wrapper">
-					<FileUploader hidden accept="image/*" id="fileUpload" randomizeFilename storageRef={firebase.storage().ref("images")} onUploadError={handleUploadError} onUploadSuccess={handleUploadSuccess} />
-					<Button type="submit" variant="primary" onClick={invokeFileUpload}>
+		return (
+			<div className="wrapper">
+				<FileUploader hidden accept="image/*" id="fileUpload" randomizeFilename storageRef={firebase.storage().ref("images")} onUploadError={handleUploadError} onUploadSuccess={handleUploadSuccess} onProgress={handleProgress} />
+				{authState.user && progress === 0 ? (
+					<Button variant="primary" onClick={invokeFileUpload}>
 						📸&nbsp;Upload an image
 					</Button>
-				</div>
-			);
-		}
+				) : (
+					""
+				)}
+			</div>
+		);
 	};
 
 	const handleUploadError = (error) => {
 		toast.error("💔 Oops. Error: " + error);
+		setProgress(0);
 	};
 
 	const handleUploadSuccess = (filename) => {
@@ -132,7 +135,22 @@ const ChatWindow = () => {
 					.catch((err) => {
 						toast.error("💔 Oops. Error: " + err);
 					});
+				setProgress(0);
 			});
+	};
+
+	const [progress, setProgress] = useState(0);
+
+	const handleProgress = (progress) => setProgress(progress);
+
+	const renderProgressBar = () => {
+		if (progress > 0) {
+			return (
+				<div className="wrapper">
+					<ProgressBar now={progress} animated />
+				</div>
+			);
+		}
 	};
 
 	useEffect(() => {
@@ -145,6 +163,7 @@ const ChatWindow = () => {
 			{messagesWindow()}
 			{chatInputWindow()}
 			{renderFileUploadButton()}
+			{renderProgressBar()}
 		</React.Fragment>
 	);
 };
