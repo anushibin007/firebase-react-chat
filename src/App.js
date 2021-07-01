@@ -9,7 +9,6 @@ import { AuthProvider } from "./context/AuthContext";
 import ChatWindow from "./components/ChatWindow";
 import "./css/chatbubble.css";
 import "animate.css/animate.min.css";
-import "firebase/performance";
 
 function App() {
 	return (

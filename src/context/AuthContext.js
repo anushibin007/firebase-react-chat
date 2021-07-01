@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import firebase from "firebase/app";
 import "firebase/auth";
+import "firebase/performance";
 
 export const AuthContext = createContext();
 
@@ -14,6 +15,7 @@ if (!firebase.apps.length) {
 		appId: "1:80104492686:web:1d6fefd98a6f1fce5c03df",
 		measurementId: "G-QFH37R5MHR",
 	});
+	firebase.performance();
 } else {
 	firebase.app();
 }
