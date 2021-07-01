@@ -42,7 +42,7 @@ const ChatWindow = () => {
 		setMessage(e.target.value);
 	};
 
-	const sendMessage = (e) => {
+	const sendTextMessage = (e) => {
 		e.preventDefault();
 		if (message && message.trim()) {
 			setMessage("");
@@ -67,7 +67,7 @@ const ChatWindow = () => {
 		if (authState.user) {
 			return (
 				<React.Fragment>
-					<form onSubmit={sendMessage}>
+					<form onSubmit={sendTextMessage}>
 						<div className="wrapper">
 							<FormControl value={message} onChange={handleMessageChanged} placeholder="🖊 Enter your message here" required autoFocus />
 						</div>
@@ -92,7 +92,7 @@ const ChatWindow = () => {
 		document.getElementById("fileUpload").click();
 	};
 
-	const fileAttachment = () => {
+	const renderFileUploadButton = () => {
 		if (authState.user) {
 			return (
 				<div>
@@ -108,7 +108,7 @@ const ChatWindow = () => {
 	};
 
 	const handleUploadError = (error) => {
-		toast.error(error);
+		toast.error("💔 Oops. Error: " + error);
 	};
 
 	const handleUploadSuccess = (filename) => {
@@ -142,7 +142,7 @@ const ChatWindow = () => {
 		<React.Fragment>
 			{messagesWindow()}
 			{chatInputWindow()}
-			{fileAttachment()}
+			{renderFileUploadButton()}
 		</React.Fragment>
 	);
 };

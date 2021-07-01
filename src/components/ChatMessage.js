@@ -12,7 +12,7 @@ const ChatMessage = (props) => {
 		if (message.messageType && message.messageType === "image") {
 			return (
 				<a href={message.text} target="_blank" rel="noopener noreferrer">
-					<img className="image-message" src={message.text} alt={message.text} />
+					<img className="image-message" src={message.text} alt={`Image sent by ${message.displayName}`} />
 				</a>
 			);
 		} else {
