@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Button, Col, Row } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { AuthContext, auth } from "../context/AuthContext";
 import { toast } from "react-toastify";
 import firebase from "firebase/app";
@@ -53,11 +53,5 @@ export default function Login() {
 		}
 	};
 
-	return (
-		<React.Fragment>
-			<Col>
-				<Row>{renderLoginOrLogout()}</Row>
-			</Col>
-		</React.Fragment>
-	);
+	return <div className="wrapper">{renderLoginOrLogout()}</div>;
 }

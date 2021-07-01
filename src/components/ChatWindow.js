@@ -1,6 +1,5 @@
 import { Button, FormControl } from "react-bootstrap";
 import React, { useContext, useEffect, useState } from "react";
-import { Col, Row } from "react-bootstrap";
 import { AuthContext } from "../context/AuthContext";
 import firebase from "firebase";
 import "firebase/firestore";
@@ -33,6 +32,7 @@ const ChatWindow = () => {
 							messages.map((aMessage) => {
 								return <ChatMessage key={aMessage.id} message={aMessage} />;
 							})}
+						<div id="endOfPage" />
 					</div>
 				</React.Fragment>
 			);
@@ -68,10 +68,14 @@ const ChatWindow = () => {
 			return (
 				<React.Fragment>
 					<form onSubmit={sendMessage}>
-						<Row>
+						<div className="wrapper">
 							<FormControl value={message} onChange={handleMessageChanged} placeholder="🖊 Enter your message here" required autoFocus />
-							<Button type="submit">🚀&nbsp;Send</Button>
-						</Row>
+						</div>
+						<div className="wrapper">
+							<Button type="submit" variant="success">
+								🚀&nbsp;Send
+							</Button>
+						</div>
 					</form>
 				</React.Fragment>
 			);
@@ -79,15 +83,15 @@ const ChatWindow = () => {
 	};
 
 	useEffect(() => {
-		document.getElementById("endOfPage").scrollIntoView();
+		const endOfPage = document.getElementById("endOfPage");
+		if (endOfPage) endOfPage.scrollIntoView();
 	}, [messages]);
 
 	return (
-		<Col>
+		<React.Fragment>
 			{messagesWindow()}
 			{chatInputWindow()}
-			<div id="endOfPage" />
-		</Col>
+		</React.Fragment>
 	);
 };
 
