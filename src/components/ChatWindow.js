@@ -45,8 +45,8 @@ const ChatWindow = () => {
 
 	const sendMessage = (e) => {
 		e.preventDefault();
-		setMessage("");
 		if (message && message.trim()) {
+			setMessage("");
 			roomDb
 				.add({
 					text: message,
